@@ -41,6 +41,7 @@ app.get('/', (req, res) => {
 const client = new Client({
   restartOnAuthFail: true,
   puppeteer: {
+    product: "chrome",
     headless: true,
     args: [
       '--no-sandbox',
