@@ -123,33 +123,33 @@ client.initialize();
 
 // Socket IO
 io.on('connection', function(socket) {
-  socket.emit('message', 'Connecting...');
+  socket.emit('message', 'Conectando, por favor aguarde...');
 
   client.on('qr', (qr) => {
     console.log('QR RECEIVED', qr);
     qrcode.toDataURL(qr, (err, url) => {
       socket.emit('qr', url);
-      socket.emit('message', 'QR Code received, scan please!');
+      socket.emit('message', 'QR Code gerado, scaneie com seu aparelho por favor!');
     });
   });
 
   client.on('ready', () => {
-    socket.emit('ready', 'Whatsapp is ready!');
-    socket.emit('message', 'Whatsapp is ready!');
+    socket.emit('ready', 'Whatsapp esta pronto!');
+    socket.emit('message', 'Whatsapp esta pronto!');
   });
 
   client.on('authenticated', () => {
-    socket.emit('authenticated', 'Whatsapp is authenticated!');
-    socket.emit('message', 'Whatsapp is authenticated!');
+    socket.emit('authenticated', 'Whatsapp foi autenticado!');
+    socket.emit('message', 'Whatsapp foi autenticado!');
     console.log('AUTHENTICATED');
   });
 
   client.on('auth_failure', function(session) {
-    socket.emit('message', 'Auth failure, restarting...');
+    socket.emit('message', 'Autenticação falhou, reiniciando...');
   });
 
   client.on('disconnected', (reason) => {
-    socket.emit('message', 'Whatsapp is disconnected!');
+    socket.emit('message', 'Whatsapp esta desconectado!');
     client.destroy();
     client.initialize();
   });
